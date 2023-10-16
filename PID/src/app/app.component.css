@@ -1,0 +1,10 @@
+header {
+  height: 60px;
+  background-color: lightgray;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+header h2 {
+  line-height: 60px;
+}

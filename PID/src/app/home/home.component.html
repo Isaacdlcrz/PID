@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="d-flex">
+    <div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column col-2" orientation="vertical">
+    <button class="btn btn-secondary mb-1" (click)="addIDRequest(content)">Agregar</button>
+      <ng-container *ngFor="let identification of dummyIdentificacions">
+        <ng-container [ngbNavItem]="identification.id">
+          <button ngbNavLink class="text-start">{{identification.title}}</button>
+          <ng-template ngbNavContent>
+            <h3 class="col-12">{{identification.type}}</h3>
+
+            <div class="d-flex">
+              <!-- Front -->
+              <div class="d-inline-block me-4 customCard">
+                <img [src]="identification.front" alt="" srcset="">
+                <div style="position: relative; top: -350px; left: 320px; font-size: large; line-height: 1em;">
+                  <!--                  <p>NOMBRE</p>-->
+                  <!--                  <p>{{identification.name}}</p>-->
+                </div>
+              </div>
+              <!-- Back -->
+              <div class="d-inline-block customCard">
+                <img [src]="identification.back" alt="" srcset="">
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+
+              <button class="btn btn-primary me-2 col-1">QR</button>
+              <button class="btn btn-primary col-1">PDF</button>
+            </div>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+
+
+
+    </div>
+
+    <div [ngbNavOutlet]="nav" class="ms-4"></div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="curpInput" class="form-label">CURP</label>
+        <input type="text" class="form-control" id="curpInput" placeholder="CULI980808HJCRPS09">
+      </div>
+      <div class="mb-3">
+        <label for="documentType" class="form-label">CURP</label>
+        <select id="documentType" class="form-select" aria-label="">
+          <option selected>Selecciona un tipo de documento</option>
+          <option value="1">Acta de Nacimiento</option>
+          <option value="2">Licencia de Conducir</option>
+          <option value="3">Licencia de Avión</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Solicitar</button>
+  </div>
+</ng-template>
